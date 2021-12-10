@@ -33,6 +33,8 @@
             this.Pencere = new System.Windows.Forms.ToolStripMenuItem();
             this.MüsteriBilgileri = new System.Windows.Forms.ToolStripMenuItem();
             this.urunBilgileriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.firmaİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kategoriİşlemleriToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.File.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -42,7 +44,9 @@
             this.Yeni,
             this.Pencere,
             this.MüsteriBilgileri,
-            this.urunBilgileriToolStripMenuItem});
+            this.urunBilgileriToolStripMenuItem,
+            this.firmaİşlemleriToolStripMenuItem,
+            this.kategoriİşlemleriToolStripMenuItem});
             this.File.Location = new System.Drawing.Point(0, 0);
             this.File.MdiWindowListItem = this.Pencere;
             this.File.Name = "File";
@@ -77,6 +81,20 @@
             this.urunBilgileriToolStripMenuItem.Text = "Ürün Bilgileri";
             this.urunBilgileriToolStripMenuItem.Click += new System.EventHandler(this.urunBilgileriToolStripMenuItem_Click);
             // 
+            // firmaİşlemleriToolStripMenuItem
+            // 
+            this.firmaİşlemleriToolStripMenuItem.Name = "firmaİşlemleriToolStripMenuItem";
+            this.firmaİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.firmaİşlemleriToolStripMenuItem.Text = "Firma İşlemleri";
+            this.firmaİşlemleriToolStripMenuItem.Click += new System.EventHandler(this.firmaİşlemleriToolStripMenuItem_Click);
+            // 
+            // kategoriİşlemleriToolStripMenuItem
+            // 
+            this.kategoriİşlemleriToolStripMenuItem.Name = "kategoriİşlemleriToolStripMenuItem";
+            this.kategoriİşlemleriToolStripMenuItem.Size = new System.Drawing.Size(110, 20);
+            this.kategoriİşlemleriToolStripMenuItem.Text = "Kategori İşlemleri";
+            this.kategoriİşlemleriToolStripMenuItem.Click += new System.EventHandler(this.kategoriİşlemleriToolStripMenuItem_Click);
+            // 
             // AnaSayfa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -102,5 +120,7 @@
         private ToolStripMenuItem Pencere;
         private ToolStripMenuItem MüsteriBilgileri;
         private ToolStripMenuItem urunBilgileriToolStripMenuItem;
+        private ToolStripMenuItem firmaİşlemleriToolStripMenuItem;
+        private ToolStripMenuItem kategoriİşlemleriToolStripMenuItem;
     }
 }

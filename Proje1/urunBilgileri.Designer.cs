@@ -30,10 +30,8 @@
         {
             this.txtUrunadi = new System.Windows.Forms.TextBox();
             this.txtUrunkodu = new System.Windows.Forms.TextBox();
-            this.txtFirmaadi = new System.Windows.Forms.TextBox();
             this.txtAlisFiyati = new System.Windows.Forms.TextBox();
             this.txtSatisfiyati = new System.Windows.Forms.TextBox();
-            this.txtKategori = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -44,6 +42,9 @@
             this.btnSil = new System.Windows.Forms.Button();
             this.btnAra = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.btnGuncelle = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -56,17 +57,10 @@
             // 
             // txtUrunkodu
             // 
-            this.txtUrunkodu.Location = new System.Drawing.Point(76, 41);
+            this.txtUrunkodu.Location = new System.Drawing.Point(76, 158);
             this.txtUrunkodu.Name = "txtUrunkodu";
             this.txtUrunkodu.Size = new System.Drawing.Size(142, 23);
             this.txtUrunkodu.TabIndex = 1;
-            // 
-            // txtFirmaadi
-            // 
-            this.txtFirmaadi.Location = new System.Drawing.Point(76, 70);
-            this.txtFirmaadi.Name = "txtFirmaadi";
-            this.txtFirmaadi.Size = new System.Drawing.Size(142, 23);
-            this.txtFirmaadi.TabIndex = 2;
             // 
             // txtAlisFiyati
             // 
@@ -82,13 +76,6 @@
             this.txtSatisfiyati.Size = new System.Drawing.Size(142, 23);
             this.txtSatisfiyati.TabIndex = 4;
             // 
-            // txtKategori
-            // 
-            this.txtKategori.Location = new System.Drawing.Point(76, 157);
-            this.txtKategori.Name = "txtKategori";
-            this.txtKategori.Size = new System.Drawing.Size(142, 23);
-            this.txtKategori.TabIndex = 5;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -101,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 41);
+            this.label2.Location = new System.Drawing.Point(6, 158);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 15);
             this.label2.TabIndex = 7;
@@ -110,7 +97,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 70);
+            this.label3.Location = new System.Drawing.Point(12, 41);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 15);
             this.label3.TabIndex = 8;
@@ -137,7 +124,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(19, 157);
+            this.label6.Location = new System.Drawing.Point(19, 70);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 15);
             this.label6.TabIndex = 11;
@@ -145,7 +132,7 @@
             // 
             // btnEkle
             // 
-            this.btnEkle.Location = new System.Drawing.Point(76, 186);
+            this.btnEkle.Location = new System.Drawing.Point(76, 303);
             this.btnEkle.Name = "btnEkle";
             this.btnEkle.Size = new System.Drawing.Size(142, 23);
             this.btnEkle.TabIndex = 12;
@@ -155,7 +142,7 @@
             // 
             // btnSil
             // 
-            this.btnSil.Location = new System.Drawing.Point(76, 215);
+            this.btnSil.Location = new System.Drawing.Point(76, 332);
             this.btnSil.Name = "btnSil";
             this.btnSil.Size = new System.Drawing.Size(142, 23);
             this.btnSil.TabIndex = 12;
@@ -180,14 +167,43 @@
             this.dataGridView1.Size = new System.Drawing.Size(605, 438);
             this.dataGridView1.TabIndex = 13;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(76, 41);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(142, 23);
+            this.comboBox1.TabIndex = 14;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(76, 70);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(142, 23);
+            this.comboBox2.TabIndex = 15;
+            // 
+            // btnGuncelle
+            // 
+            this.btnGuncelle.Location = new System.Drawing.Point(76, 274);
+            this.btnGuncelle.Name = "btnGuncelle";
+            this.btnGuncelle.Size = new System.Drawing.Size(142, 23);
+            this.btnGuncelle.TabIndex = 12;
+            this.btnGuncelle.Text = "GÜNCELLE";
+            this.btnGuncelle.UseVisualStyleBackColor = true;
+            this.btnGuncelle.Click += new System.EventHandler(this.btnEkle_Click);
+            // 
             // urunBilgileri
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(852, 462);
+            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnAra);
             this.Controls.Add(this.btnSil);
+            this.Controls.Add(this.btnGuncelle);
             this.Controls.Add(this.btnEkle);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -195,10 +211,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtKategori);
             this.Controls.Add(this.txtSatisfiyati);
             this.Controls.Add(this.txtAlisFiyati);
-            this.Controls.Add(this.txtFirmaadi);
             this.Controls.Add(this.txtUrunkodu);
             this.Controls.Add(this.txtUrunadi);
             this.Name = "urunBilgileri";
@@ -213,10 +227,8 @@
 
         private TextBox txtUrunadi;
         private TextBox txtUrunkodu;
-        private TextBox txtFirmaadi;
         private TextBox txtAlisFiyati;
         private TextBox txtSatisfiyati;
-        private TextBox txtKategori;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -227,5 +239,8 @@
         private Button btnSil;
         private Button btnAra;
         private DataGridView dataGridView1;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
+        private Button btnGuncelle;
     }
 }

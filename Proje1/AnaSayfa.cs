@@ -29,8 +29,10 @@ namespace Proje1
             InitializeComponent();
         }
         Form2 newMDIChild;
-        MusteriBilgileri newMDIChild2;
-        urunBilgileri newMDIChild3;
+        MusteriBilgileri mesteribilgileri;
+        urunBilgileri urunbilgileri;
+        firmaIslemleri firmaislemleri;
+        kategoriIslemleri kategoriislemleri;
         private void Yeni_Click(object sender, EventArgs e)
         {
             if (newMDIChild==null || newMDIChild.IsDisposed)
@@ -44,23 +46,45 @@ namespace Proje1
 
         private void MüsteriBilgileri_Click(object sender, EventArgs e)
         {
-            if (newMDIChild2 == null || newMDIChild2.IsDisposed)
+            if (mesteribilgileri == null || mesteribilgileri.IsDisposed)
             {
-                newMDIChild2 = new MusteriBilgileri();
-                newMDIChild2.Owner = this;
-                newMDIChild2.MdiParent = this;
-                newMDIChild2.Show();
+                mesteribilgileri = new MusteriBilgileri();
+                mesteribilgileri.Owner = this;
+                mesteribilgileri.MdiParent = this;
+                mesteribilgileri.Show();
             }
         }
 
         private void urunBilgileriToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (newMDIChild3 == null || newMDIChild3.IsDisposed)
+            if (urunbilgileri == null || urunbilgileri.IsDisposed)
             {
-                newMDIChild3 = new urunBilgileri();
-                newMDIChild3.Owner = this;
-                newMDIChild3.MdiParent = this;
-                newMDIChild3.Show();
+                urunbilgileri = new urunBilgileri();
+                urunbilgileri.Owner = this;
+                urunbilgileri.MdiParent = this;
+                urunbilgileri.Show();
+            }
+        }
+
+        private void firmaİşlemleriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (firmaislemleri == null || firmaislemleri.IsDisposed)
+            {
+                firmaislemleri = new firmaIslemleri();
+                firmaislemleri.Owner = this;
+                firmaislemleri.MdiParent = this;
+                firmaislemleri.Show();
+            }
+        }
+
+        private void kategoriİşlemleriToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (kategoriislemleri == null || kategoriislemleri.IsDisposed)
+            {
+                kategoriislemleri = new kategoriIslemleri();
+                kategoriislemleri.Owner = this;
+                kategoriislemleri.MdiParent = this;
+                kategoriislemleri.Show();
             }
         }
     }

@@ -46,6 +46,8 @@ namespace Proje1
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 baglanti.Close();
+                ds.Tables["tblMusteri"].Clear();
+                kayitGoster("tblMusteri");
                 foreach (Control kontrol in this.Controls)
                 {
                     if (kontrol is TextBox)
@@ -104,6 +106,11 @@ namespace Proje1
             dataGridView1.DataSource= table;
             baglanti.Close();
 
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }
