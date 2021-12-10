@@ -38,10 +38,10 @@ namespace Proje1
             if (txtAdi.Text.Trim() != "" && txtAdres.Text.Trim() != "" && txtTelefon.Text.Trim() != "")
             {
                 baglanti.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO tblFirmalar(saticiFirmaAdi,adres,telefon) VALUES (@saticiFirmaAdi,@adres,@telefon)", baglanti);
-                cmd.Parameters.AddWithValue("@saticiFirmaAdi", txtAdi.Text);
-                cmd.Parameters.AddWithValue("@adres", txtTelefon.Text);
-                cmd.Parameters.AddWithValue("@telefon", txtAdres.Text);
+                SqlCommand cmd = new SqlCommand("INSERT INTO tblFirmalar(saticiFirmaAdi,adres,telefon) VALUES (@saticiFirmaAdi,@adres,@telefon)",baglanti);
+                cmd.Parameters.AddWithValue("@saticiFirmaAdi",txtAdi.Text);
+                cmd.Parameters.AddWithValue("@adres",txtAdres.Text);
+                cmd.Parameters.AddWithValue("@telefon", txtTelefon.Text);
                 cmd.ExecuteNonQuery();
                 cmd.Dispose();
                 baglanti.Close();
@@ -65,7 +65,7 @@ namespace Proje1
             if (txtAdi.Text.Trim() != "" && txtAdres.Text.Trim() != "" && txtTelefon.Text.Trim() != "")
             {
                 baglanti.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE tblFirmalar SET saticiFirmaAdi=@saticiFirmaAdi,adres=@adres,telefon=@telefon WHERE saticiFirmaID=@saticiFirmaID", baglanti);
+                SqlCommand cmd = new SqlCommand("UPDATE tblFirmalar SET saticiFirmaAdi=@saticiFirmaAdi,adres=@adres,telefon=@telefon WHERE saticiFirmaID='"+txtID.Text+"'", baglanti);
                 cmd.Parameters.AddWithValue("@saticiFirmaAdi", txtAdi.Text);
                 cmd.Parameters.AddWithValue("@adres", txtAdres.Text);
                 cmd.Parameters.AddWithValue("@telefon", txtTelefon.Text);
