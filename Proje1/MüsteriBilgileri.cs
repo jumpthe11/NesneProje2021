@@ -20,7 +20,7 @@ namespace Proje1
         DataSet ds = new DataSet(); 
         private void MusteriBilgileri_Load(object sender, EventArgs e)
         {
-            kayitGoster("tblMusteri");
+            kayitGoster("musteri");
         }
 
         private void kayitGoster(string a)//KAyıtları datagrid de gösterir.
@@ -34,56 +34,74 @@ namespace Proje1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
-            if (txtAdi.Text.Trim()!=""&&txtSoyadi.Text.Trim() != ""&&txtTelefon.Text.Trim() != ""&&txtAdres.Text.Trim() != "")
+            try
             {
-                baglanti.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO tblMusteri(mstrAdi,mstrSoyadi,mstrTelefon,mstrAdres) VALUES (@mstrAdi,@mstrSoyadi,@mstrTelefon,@mstrAdres)",baglanti);
-                cmd.Parameters.AddWithValue("@mstrAdi", txtAdi.Text);
-                cmd.Parameters.AddWithValue("@mstrSoyadi", txtSoyadi.Text);
-                cmd.Parameters.AddWithValue("@mstrTelefon", txtTelefon.Text);
-                cmd.Parameters.AddWithValue("@mstrAdres", txtAdres.Text);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
-                baglanti.Close();
-                ds.Tables["tblMusteri"].Clear();
-                kayitGoster("tblMusteri");
-                foreach (Control kontrol in this.Controls)
+                if (txtTC.Text.Trim() != "" && txtAdi.Text.Trim() != "" && txtSoyadi.Text.Trim() != "" && txtTelefon.Text.Trim() != "" && txtAdres.Text.Trim() != "" && txtSifre.Text.Trim() != "")
                 {
-                    if (kontrol is TextBox)
-                        kontrol.Text = "";
+                    baglanti.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO musteri(TC,mstrAdi,mstrSoyadi,mstrTelefon,mstrAdres) VALUES (@TC,@mstrAdi,@mstrSoyadi,@mstrTelefon,@mstrAdres)", baglanti);
+                    cmd.Parameters.AddWithValue("@TC", txtTC.Text);
+                    cmd.Parameters.AddWithValue("@mstrAdi", txtAdi.Text);
+                    cmd.Parameters.AddWithValue("@mstrSoyadi", txtSoyadi.Text);
+                    cmd.Parameters.AddWithValue("@mstrTelefon", txtTelefon.Text);
+                    cmd.Parameters.AddWithValue("@mstrAdres", txtAdres.Text);
+                    cmd.ExecuteNonQuery();
+                    cmd.Dispose();
+                    baglanti.Close();
+                    baglanti.Open();
+                    SqlCommand cmd2 = new SqlCommand("INSERT INTO kullaniciGiris(TC,sifre,kullaniciTuru) VALUES(@TC,@sifre,@kullaniciTuru)", baglanti);
+                    cmd2.Parameters.AddWithValue("@TC", txtTC.Text);
+                    cmd2.Parameters.AddWithValue("@sifre", txtSifre.Text);
+                    cmd2.Parameters.AddWithValue("@kullaniciTuru", false);
+                    cmd2.ExecuteNonQuery();
+                    cmd2.Dispose();
+                    baglanti.Close();
+                    
+                    ds.Tables["musteri"].Clear();
+                    kayitGoster("musteri");
+                    foreach (Control kontrol in this.Controls)
+                    {
+                        if (kontrol is TextBox)
+                            kontrol.Text = "";
+                    }
+                    MessageBox.Show("EKLENDİ");
                 }
-                MessageBox.Show("EKLENDİ");
+                else
+                {
+                    MessageBox.Show("Tüm Alanları Doldorunuz...!!!");
+                }
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Tüm Alanları Doldorunuz...!!!");
+                MessageBox.Show("Eksik bilgiler var.\n Ekleme yapamazsınız.\n Aynı TC ile ekleme yapamazsınız.");
             }
-        }
-
-        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            txtAdi.Text= dataGridView1.CurrentRow.Cells["mstrAdi"].Value.ToString();
-            txtSoyadi.Text= dataGridView1.CurrentRow.Cells["mstrSoyadi"].Value.ToString();
-            txtTelefon.Text = dataGridView1.CurrentRow.Cells["mstrTelefon"].Value.ToString();
-            txtAdres.Text = dataGridView1.CurrentRow.Cells["mstrAdres"].Value.ToString();
-        }
+           
+        }  
 
         private void button2_Click(object sender, EventArgs e)
         {
             if (txtAdi.Text.Trim() != "" && txtSoyadi.Text.Trim() != "" && txtTelefon.Text.Trim() != "" && txtAdres.Text.Trim() != "")
             {
                 baglanti.Open();
-                SqlCommand cmd = new SqlCommand("UPDATE tblMusteri SET mstrAdi=@mstrAdi,mstrSoyadi=@mstrSoyadi,mstrTelefon=@mstrTelefon,mstrAdres=@mstrAdres WHERE mstrTelefon=@mstrTelefon", baglanti);
-                cmd.Parameters.AddWithValue("@mstrAdi", txtAdi.Text);
-                cmd.Parameters.AddWithValue("@mstrSoyadi", txtSoyadi.Text);
-                cmd.Parameters.AddWithValue("@mstrTelefon", txtTelefon.Text);
-                cmd.Parameters.AddWithValue("@mstrAdres", txtAdres.Text);
-                cmd.ExecuteNonQuery();
-                cmd.Dispose();
+                SqlCommand cmd3 = new SqlCommand("UPDATE musteri SET mstrAdi=@mstrAdi,mstrSoyadi=@mstrSoyadi,mstrTelefon=@mstrTelefon,mstrAdres=@mstrAdres WHERE TC='" + txtTC.Text + "'", baglanti);
+                cmd3.Parameters.AddWithValue("@mstrAdi", txtAdi.Text);
+                cmd3.Parameters.AddWithValue("@mstrSoyadi", txtSoyadi.Text);
+                cmd3.Parameters.AddWithValue("@mstrTelefon", txtTelefon.Text);
+                cmd3.Parameters.AddWithValue("@mstrAdres", txtAdres.Text);
+                cmd3.ExecuteNonQuery();
+                cmd3.Dispose();
                 baglanti.Close();
-                ds.Tables["tblMusteri"].Clear();
-                kayitGoster("tblMusteri");
+                if (txtSifre.Text.Trim() != "")
+                {
+                    baglanti.Open();
+                    SqlCommand cmd4 = new SqlCommand("UPDATE kullaniciGiris SET sifre=@sifre WHERE TC='" + txtTC.Text + "'", baglanti);
+                    cmd4.Parameters.AddWithValue("@sifre", txtSifre.Text);
+                    cmd4.ExecuteNonQuery();
+                    cmd4.Dispose();
+                    baglanti.Close();
+                }                
+                ds.Tables["musteri"].Clear();
+                kayitGoster("musteri");
                 foreach (Control kontrol in this.Controls)
                 {
                     if (kontrol is TextBox)
@@ -101,17 +119,58 @@ namespace Proje1
         {
             DataTable table = new DataTable();
             baglanti.Open();
-            SqlDataAdapter adtr = new SqlDataAdapter("SELECT * FROM tblMusteri WHERE mstrTelefon like '%"+txtAra.Text+"%'",baglanti);
+            SqlDataAdapter adtr = new SqlDataAdapter("SELECT * FROM musteri WHERE mstrTelefon like '%"+txtAra.Text+"%'",baglanti);
             adtr.Fill(table);
             dataGridView1.DataSource= table;
             baglanti.Close();
-
-
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void txtAra_TextChanged(object sender, EventArgs e)
         {
+            DataTable table1 = new DataTable();
+            baglanti.Open();
+            SqlDataAdapter adtr = new SqlDataAdapter("SELECT * FROM musteri WHERE mstrTelefon like '%" + txtAra.Text+ "%' OR TC like '%" + txtAra.Text + "%' OR mstrAdi like '%" + txtAra.Text  + "%' OR mstrSoyadi like '%" + txtAra.Text + "%'", baglanti);
+            adtr.Fill(table1);
+            dataGridView1.DataSource = table1;
+            baglanti.Close();
+        }
 
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            txtTC.Text = dataGridView1.CurrentRow.Cells["TC"].Value.ToString();
+            txtAdi.Text = dataGridView1.CurrentRow.Cells["mstrAdi"].Value.ToString();
+            txtSoyadi.Text = dataGridView1.CurrentRow.Cells["mstrSoyadi"].Value.ToString();
+            txtTelefon.Text = dataGridView1.CurrentRow.Cells["mstrTelefon"].Value.ToString();
+            txtAdres.Text = dataGridView1.CurrentRow.Cells["mstrAdres"].Value.ToString();
+        }
+
+        private void btnSil_Click(object sender, EventArgs e)
+        {
+            if (txtTC.Text.Trim() != "")
+            {
+                baglanti.Open();
+                SqlCommand cmd5 = new SqlCommand("delete from musteri WHERE TC=" + txtTC.Text, baglanti);
+                cmd5.ExecuteNonQuery();
+                cmd5.Dispose();
+                baglanti.Close();
+                baglanti.Open();
+                SqlCommand cmd6 = new SqlCommand("delete from musteri WHERE TC=" + txtTC.Text, baglanti);
+                cmd6.ExecuteNonQuery();
+                cmd6.Dispose();
+                baglanti.Close();
+                ds.Tables["musteri"].Clear();
+                kayitGoster("musteri");
+                foreach (Control kontrol in this.Controls)
+                {
+                    if (kontrol is TextBox)
+                        kontrol.Text = "";
+                }
+                MessageBox.Show("Silme başarılı..");
+            }
+            else
+            {
+                MessageBox.Show("Silmek istediğiniz çift tıklayınız");
+            }
         }
     }
 }

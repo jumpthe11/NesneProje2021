@@ -10,7 +10,7 @@ namespace Proje1
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new AnaSayfa());
+            Application.Run(new Giris());
         }
         
     }

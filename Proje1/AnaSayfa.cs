@@ -28,7 +28,7 @@ namespace Proje1
         {
             InitializeComponent();
         }
-        Form2 newMDIChild;
+        yoneticiEkle newMDIChild;
         MusteriBilgileri mesteribilgileri;
         urunBilgileri urunbilgileri;
         firmaIslemleri firmaislemleri;
@@ -37,7 +37,7 @@ namespace Proje1
         {
             if (newMDIChild==null || newMDIChild.IsDisposed)
             {
-                newMDIChild=new Form2();
+                newMDIChild=new yoneticiEkle();
                 newMDIChild.Owner = this;
                 newMDIChild.MdiParent = this;
                 newMDIChild.Show();
@@ -86,6 +86,11 @@ namespace Proje1
                 kategoriislemleri.MdiParent = this;
                 kategoriislemleri.Show();
             }
+        }
+
+        private void AnaSayfa_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
